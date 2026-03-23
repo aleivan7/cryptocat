@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Monster Slayer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>🗡️ Word Monster Slayer</h1>
+      <p>Write words, roll dice, and defeat the monster!</p>
+    </header>
+
+    <section class="card setup-card" id="setupCard">
+      <h2>Setup Session</h2>
+      <form id="setupForm">
+        <label>
+          Words to practice (comma-separated)
+          <input id="wordsInput" type="text" placeholder="cat, sun, tree" required />
+        </label>
+
+        <label>
+          Monster name
+          <input id="monsterNameInput" type="text" placeholder="Spelling Dragon" />
+        </label>
+
+        <button type="submit">Start Battle</button>
+      </form>
+      <p class="hint">Monster HP scales with number of words: <strong>HP = words × 18</strong>.</p>
+    </section>
+
+    <section class="battle hidden" id="battleArea">
+      <div class="card monster-card">
+        <h2 id="monsterName">Monster</h2>
+        <div class="monster-emoji" aria-hidden="true">👾</div>
+        <div class="hp-wrap">
+          <div class="hp-label" id="hpLabel">HP: 0 / 0</div>
+          <div class="hp-bar-bg">
+            <div id="hpBar" class="hp-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card practice-card">
+        <h2>Word Practice</h2>
+        <p>Current word: <strong id="currentWord">-</strong></p>
+        <p>Writes for this word: <strong id="writesCount">0</strong> / 5</p>
+        <button id="wroteWordBtn" type="button">I wrote it once</button>
+
+        <label class="mastered-toggle">
+          <input id="masteredToggle" type="checkbox" />
+          Word mastered (3 dice mode)
+        </label>
+      </div>
+
+      <div class="card attack-card">
+        <h2>Attack</h2>
+        <p id="diceHint">Roll 1 physical die and enter total damage.</p>
+        <label>
+          Damage dealt
+          <input id="damageInput" type="number" min="1" step="1" placeholder="e.g. 4" />
+        </label>
+        <button id="attackBtn" type="button">Attack Monster</button>
+        <p id="attackError" class="error"></p>
+      </div>
+
+      <div class="card log-card">
+        <h2>Battle Log</h2>
+        <ul id="battleLog"></ul>
+      </div>
+    </section>
+
+    <section class="card victory hidden" id="victoryCard">
+      <h2>🎉 Victory!</h2>
+      <p>The monster has been defeated. Great writing practice!</p>
+      <button id="playAgainBtn" type="button">Start New Monster</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
